@@ -70,7 +70,7 @@ def execucao_orcanizadores(Listas):
     fim = time.time()
     tempo_bubble = str(round(fim - ini, 7)) 
     #a variável foi definida como uma string pois o pyqt5 exige que para mostrar um número em seus label's, o mesmo seja uma str
-    #foi utilizado o round() para melhor leitura do tempo de execução no programa
+    #foi utilizado o round() com 7 casas decimais para melhor leitura do tempo de execução no programa
     #subtraindo o tempo de execução de depois e antes da função do organizador, temos o tempo de execução daquela função
 
 
@@ -118,27 +118,28 @@ class Ui_MainWindow(object):
         self.cemElementos.setObjectName("cemElementos")#nome do objeto
 
         #milElementos
-        self.mil_elementos = QtWidgets.QPushButton(self.centralwidget)#definindo o Widget "milElementos" como um botão
-        self.mil_elementos.setGeometry(QtCore.QRect(160, 60, 111, 23))#coordenadas(x,y) e tamanho(largura,altura) do botão "milElementos"
-        self.mil_elementos.clicked.connect(self.milElementos_clicked)#método definido quando o botão "milElementos" for pressionado
-        self.mil_elementos.setObjectName("mil_elementos")#nome do objeto
+        self.mil_elementos = QtWidgets.QPushButton(self.centralwidget)
+        self.mil_elementos.setGeometry(QtCore.QRect(160, 60, 111, 23))
+        self.mil_elementos.clicked.connect(self.milElementos_clicked)
+        self.mil_elementos.setObjectName("mil_elementos")
         
 
-
-        self.dezMilElementos = QtWidgets.QPushButton(self.centralwidget)#definindo o Widget "dezMilElementos" como um botão
-        self.dezMilElementos.setGeometry(QtCore.QRect(300, 60, 101, 23))#coordenadas(x,y) e tamanho(largura,altura) do botão "dezMilElementos"
-        self.dezMilElementos.clicked.connect(self.dezMilelementos_clicked)#método definido quando o botão "dezMilElementos" for pressionado
-        self.dezMilElementos.setObjectName("dezMilElementos")#nome do objeto
+        #dezMilElementos
+        self.dezMilElementos = QtWidgets.QPushButton(self.centralwidget)
+        self.dezMilElementos.setGeometry(QtCore.QRect(300, 60, 101, 23))
+        self.dezMilElementos.clicked.connect(self.dezMilelementos_clicked)
+        self.dezMilElementos.setObjectName("dezMilElementos")
         
-
-        self.Bubble = QtWidgets.QLabel(self.centralwidget)#definindo o Widget "Bubble" como um label
-        self.Bubble.setGeometry(QtCore.QRect(30, 130, 141, 16))#tamamnho do objeto
-        font = QtGui.QFont()#variável da fonte utilizada pelo objeto
-        font.setFamily("Arial")#família da fonte "font" definida para "Arial"
-        font.setPointSize(11)#tamanho da fonte
-        self.Bubble.setFont(font)#definindo "Bubble" para utilizar a fonte "font"
-        self.Bubble.setObjectName("Bubble")#nome do objeto
+        #Bubble
+        self.Bubble = QtWidgets.QLabel(self.centralwidget)
+        self.Bubble.setGeometry(QtCore.QRect(30, 130, 141, 16))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        self.Bubble.setFont(font)
+        self.Bubble.setObjectName("Bubble")
         
+        #Selection
         self.Selection = QtWidgets.QLabel(self.centralwidget)
         self.Selection.setGeometry(QtCore.QRect(30, 160, 141, 16))
         font = QtGui.QFont()
@@ -147,7 +148,7 @@ class Ui_MainWindow(object):
         self.Selection.setFont(font)
         self.Selection.setObjectName("Selection")
 
-
+        #Tempo_execucao
         self.Tempo_execucao = QtWidgets.QLabel(self.centralwidget)
         self.Tempo_execucao.setGeometry(QtCore.QRect(150, 100, 141, 16))
         font = QtGui.QFont()
@@ -156,7 +157,7 @@ class Ui_MainWindow(object):
         self.Tempo_execucao.setFont(font)
         self.Tempo_execucao.setObjectName("Tempo_execucao")
 
-
+        #Insertion
         self.Insertion = QtWidgets.QLabel(self.centralwidget)
         self.Insertion.setGeometry(QtCore.QRect(30, 190, 141, 16))
         font = QtGui.QFont()
@@ -165,6 +166,7 @@ class Ui_MainWindow(object):
         self.Insertion.setFont(font)
         self.Insertion.setObjectName("Insertion")
 
+        #sort
         self.sort = QtWidgets.QLabel(self.centralwidget)
         self.sort.setGeometry(QtCore.QRect(30, 220, 151, 16))
         font = QtGui.QFont()
@@ -173,7 +175,7 @@ class Ui_MainWindow(object):
         self.sort.setFont(font)
         self.sort.setObjectName("sort")
 
-
+        #menubar e statusbar
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 432, 21))
@@ -186,21 +188,25 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    #caso o botao "cemElementos" seja clickado
     def cemElementos_clicked(self):
-        self.Titulo.setText("100 elementos: ")
 
+        self.Titulo.setText("100 elementos: ") #definindo o label "Titulo" para "100 elementos: "
+
+        #definindo o n com valor 100 para funcionamento das funções responsáveis pelos organizadores
         n=100
         Listas(n)
         execucao_orcanizadores(Listas)
 
-
+        #atualizando a mensagem mostrada pelos label's para assim mostrar o tempo de execução de cada organizador
         self.Bubble.setText(_translate("MainWindow", "Bubble: "+ tempo_bubble))
         self.Selection.setText(_translate("MainWindow", "Selection: "+ tempo_selection))
         self.Insertion.setText(_translate("MainWindow", "Insertion: "+ tempo_insertion))
         self.sort.setText(_translate("MainWindow", "Sort() :"+ tempo_sort))
 
-        self.update()
+        
 
+    #caso o botão "milElementos" seja clickado
     def milElementos_clicked(self):
 
         self.Titulo.setText("1000 elementos: ")
@@ -215,8 +221,9 @@ class Ui_MainWindow(object):
         self.Insertion.setText(_translate("MainWindow", "Insertion: "+ tempo_insertion))
         self.sort.setText(_translate("MainWindow", "Sort() :"+ tempo_sort))
 
-        self.update()
+        
 
+    #caso o botão "dezMilElementos" seja clickado
     def dezMilelementos_clicked(self):
 
         self.Titulo.setText("10000 elementos: ")
@@ -231,9 +238,7 @@ class Ui_MainWindow(object):
         self.Insertion.setText(_translate("MainWindow", "Insertion: "+ tempo_insertion))
         self.sort.setText(_translate("MainWindow", "Sort() :"+ tempo_sort))
 
-    def update(self):
-        self.Titulo.adjustSize()
-
+    #definindo as mensagens mostradas pelos label's e botões em primeiro momento
     def retranslateUi(self, MainWindow):
 
         MainWindow.setWindowTitle(_translate("MainWindow", "Organizadores"))
@@ -242,11 +247,13 @@ class Ui_MainWindow(object):
         self.mil_elementos.setText(_translate("MainWindow", "1000 elementos"))
         self.dezMilElementos.setText(_translate("MainWindow", "10000 elementos"))
 
+
+    #main
 if __name__ == "__main__":
    
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+    app = QtWidgets.QApplication(sys.argv)#define "app" como o cache
+    MainWindow = QtWidgets.QMainWindow()#define a MainWindow com as funções criqadas anteriormente
+    ui = Ui_MainWindow()#define "ui" como a janela criada
+    ui.setupUi(MainWindow)#inicializa a UI
+    MainWindow.show() #mostra a UI criada
+    sys.exit(app.exec_())#finaliza o algorítmo caso o usuário clique no "X" para fechar a janela
